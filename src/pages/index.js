@@ -5,11 +5,15 @@ import { Tabs, h2,TabList, TabPanels, Tab, TabPanel, shouldShowFallbackImage } f
 import { useBoolean } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
+import React, { useState } from 'react';
 import { useToast } from '@chakra-ui/react'
 
 
 export default function Home() {
   const [flag, setFlag] = useBoolean()
+  const [isLoaded, setIsLoaded] = React.useState(false)
   return (
     <div className={styles.container}>
       
@@ -112,15 +116,28 @@ export default function Home() {
                     <br/>
                     　ここで、今回のクイズの答えを発表。問題は「２番目によく付けられた猫の名前は？」でしたが、分かりましたでしょうか？解答は以下の青いボタンをクリックしてください！
                     <br/>
-                    <p><Box bg='khaki' w='100%' p={4} color='black'>
-              {flag ? '正解は「ソラ」でした。ヒントが言っていたことはつまり、見上げるとあるもの→「空」→「ソラ」という訳です。ちょっと分かりづらかったでしょうか？' : '答えを考えてから開いてください！'}
-              </Box> </p>
-              <button onClick={setFlag.toggle}>
-              <Button colorScheme='blue' size='xs'>答えを表示</Button>
-              </button>
+                    <Stack padding={4} spacing={1}>
+                      <Skeleton
+                        // height='100px'
+                        isLoaded={isLoaded}
+                        bg='green.200'
+                        color='black'
+                        fadeDuration={1}
+      >
+                        <Box p={2} m={2}>
+                          　正解は「ソラ」でした。
+                          <br/>
+                          　ヒントが言っていたことはつまり、見上げるとあるもの→「空」→「ソラ」という訳です。ちょっと分かりづらかったでしょうか？' 
+                        </Box>
+                      </Skeleton>
+
+                      <Box textAlign='center'>
+                        <Button onClick={() => setIsLoaded((v) => !v)}  colorScheme='blue' size='md'>答えを表示</Button>
+                      </Box>
+                    </Stack>
                     <br/>
                     　以上、スコティッシュ・フォールドについてでした。
-                    <br/><br/>
+                    <br/><br/><br/>
                     「今回お借りした写真」
                     <br/>
                     「茶トラのスコティッシュ・フォールド」写真ACより：<a href="https://www.photo-ac.com/main/detail/514980?" class="catslink">https://www.photo-ac.com/main/detail/514980?</a>
@@ -197,15 +214,30 @@ export default function Home() {
                   <br/>
                   　ここで冒頭の問題の答え合わせ。本日の問題は「猫のジャンプ力は自分の体高の何倍の高さまで達するか？」でした。解答の用意は大丈夫ですか？もう発表しちゃいますよ？
                   <br/>
-                  <p><Box bg='khaki' w='100%' p={4} color='black'>
-              {flag ? '正解はEの「5倍」でした！合ってましたか？\n人間で換算してみると、人がビルの２階～３階まで自力で跳んでいるようなもので、猫の脚力がどれほどのものか想像できるでしょう。そんで、５倍って結局どんなもんなの？ということですが、猫の平均的な体高は23～25cmですので、５倍にしてみると115～125cmほどになる訳ですね。1m越えです。なんなら1.5mも容易に跳べますし、最高は2mも越えるんだとか。\n猫がこれほどまでに高く跳べるのは、後ろ脚の筋肉が発達しており、体が柔らかく、かつ軽く、平衡感覚に優れているためとされています。かつて猫の祖先は森で暮らしており、木に登ることで獲物を上から奇襲するといったことや、木から木へと飛び移ったりしていたようで、それが後世の猫に受け継がれたという訳ですね。猫がよく高いところにいるのは、こういった性質を引き継いでいるからであり、猫にしてみれば当たり前のことなんです。にしても、恐ろしい脚力ですね…' : '答えを考えてから開いてください！'}
-              </Box> </p>
-              <button onClick={setFlag.toggle}>
-              <Button colorScheme='blue' size='xs'>答えを表示</Button>
-              </button>                
+                  <Stack padding={4} spacing={1}>
+                      <Skeleton
+                        // height='100px'
+                        isLoaded={isLoaded}
+                        bg='green.200'
+                        color='black'
+                        fadeDuration={1}
+      >
+                        <Box p={2} m={2}>
+                          　正解はEの「5倍」でした！合ってましたか？
+                          <br/>
+                          　人間で換算してみると、人がビルの２階～３階まで自力で跳んでいるようなもので、猫の脚力がどれほどのものか想像できるでしょう。そんで、５倍って結局どんなもんなの？ということですが、猫の平均的な体高は23～25cmですので、５倍にしてみると115～125cmほどになる訳ですね。1m越えです。なんなら1.5mも容易に跳べますし、最高は2mも越えるんだとか。
+                          <br/>
+                          　猫がこれほどまでに高く跳べるのは、後ろ脚の筋肉が発達しており、体が柔らかく、かつ軽く、平衡感覚に優れているためとされています。かつて猫の祖先は森で暮らしており、木に登ることで獲物を上から奇襲するといったことや、木から木へと飛び移ったりしていたようで、それが後世の猫に受け継がれたという訳ですね。猫がよく高いところにいるのは、こういった性質を引き継いでいるからであり、猫にしてみれば当たり前のことなんです。にしても、恐ろしい脚力ですね…
+                        </Box>
+                      </Skeleton>
+
+                      <Box textAlign='center'>
+                        <Button onClick={() => setIsLoaded((v) => !v)}  colorScheme='blue' size='md'>答えを表示</Button>
+                      </Box>
+                    </Stack>      
                   <br/>
                   　以上、ソマリについてでした！
-                  <br/>
+                  <br/><br/><br/>
                   「今回お借りした写真」
                   <br/>
                   「ソマリ」写真ACより：<a href="https://www.photo-ac.com/main/detail/4702795?" class="catslink">https://www.photo-ac.com/main/detail/4702795?</a>
@@ -276,23 +308,36 @@ export default function Home() {
             </section>
             <br/>
             <section id="4" >
-                <h2 class="h2">４．まとめ</h2>
-                <p>
-                　さて、以上がラグドールについてのキャットレポートになります。
-                <br/>
-                　丸まるとした体躯にふわふわモフモフした毛並み、そして抱っこが大好きで抱かれると甘えてくるぬいぐるみのような猫のラグドールでしたが、いかがだったでしょうか。個人的には抱っこが大好きって部分がもうたまらないぐらい可愛くて、是非とも抱っこしてみたい欲求に駆られました。
-                  <br/>
-                  　ではここで冒頭のクイズの答え合わせです。本日の問題は「猫は一日何時間寝ているの？」でしたが、皆様選択肢から選びましたでしょうか？
-                  <br/>
-                  <p><Box bg='khaki' w='100%' p={4} color='black'>
-              {flag ? '正解はBの「12～16時間」でした！どうやら野生時代の名残として、体力温存のため長時間寝ていたらしく、あまりに寝るもんだからと「寝子」というあだ名がつき、それが現在の「猫」という名前になったそうです。まさか猫という語源がここにあるとは…。因みに、12～16時間は大人の猫の睡眠時間であり、仔猫はなんと20時間も寝るんだとか。むしろよくそこまで寝続けられますね。上記の睡眠時間故に、猫の一生のおよそ50～70％が睡眠に充てられており、起きても毛づくろいしてたりぼんやりしてたり、本当にのんびりな動物です。正直猫になりたかった…。' : '答えを考えてから開いてください！'}
-              </Box> </p>
-              <button onClick={setFlag.toggle}>
-              <Button colorScheme='blue' size='xs'>答えを表示</Button>
-              </button>                
+              <h2 class="h2">４．まとめ</h2>
+              <p>
+              　さて、以上がラグドールについてのキャットレポートになります。
+              <br/>
+              　丸まるとした体躯にふわふわモフモフした毛並み、そして抱っこが大好きで抱かれると甘えてくるぬいぐるみのような猫のラグドールでしたが、いかがだったでしょうか。個人的には抱っこが大好きって部分がもうたまらないぐらい可愛くて、是非とも抱っこしてみたい欲求に駆られました。
+              <br/>
+              　ではここで冒頭のクイズの答え合わせです。本日の問題は「猫は一日何時間寝ているの？」でしたが、皆様選択肢から選びましたでしょうか？
+              <br/>
+              <Stack padding={4} spacing={1}>
+                      <Skeleton
+                        // height='100px'
+                        isLoaded={isLoaded}
+                        bg='green.200'
+                        color='black'
+                        fadeDuration={1}
+      >
+                        <Box p={2} m={2}>
+                          　正解はBの「12～16時間」でした！
+                          <br/>
+                          　どうやら野生時代の名残として、体力温存のため長時間寝ていたらしく、あまりに寝るもんだからと「寝子」というあだ名がつき、それが現在の「猫」という名前になったそうです。まさか猫という語源がここにあるとは…。因みに、12～16時間は大人の猫の睡眠時間であり、仔猫はなんと20時間も寝るんだとか。むしろよくそこまで寝続けられますね。上記の睡眠時間故に、猫の一生のおよそ50～70％が睡眠に充てられており、起きても毛づくろいしてたりぼんやりしてたり、本当にのんびりな動物です。正直猫になりたかった…。
+                        </Box>
+                      </Skeleton>
+
+                      <Box textAlign='center'>
+                        <Button onClick={() => setIsLoaded((v) => !v)}  colorScheme='blue' size='md'>答えを表示</Button>
+                      </Box>
+                    </Stack>  
                   <br/>
                   　以上、ラグドールについてでした！
-                  <br/>
+                  <br/><br/><br/>
                   「今回お借りした写真」
                   <br/>
                   「ラグドール」写真ACより：<a href="https://www.photo-ac.com/main/detail/4881667?" class="catslink">https://www.photo-ac.com/main/detail/4881667?</a>
