@@ -14,3 +14,42 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* .container{ */
+  /* background: color #cc993c; */
+/* } */
+
+.header{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 700px;
+    margin-right: auto;
+    margin-left : auto;
+    background-color: white;
+    border: solid 7px #000000;
+}
+
+.main{
+  width: 700px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-left : auto;
+    background-color: white;
+    border-left: solid 3px #000000;
+    border-right: solid 3px #000000;
+}
+
+.h1{
+  font-size:40px;
+  font-weight:bold;
+}
+
+.h2{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.catslink{
+  color:blue;
+  text-decoration:underline;
+}

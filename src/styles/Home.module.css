@@ -1,5 +1,7 @@
 .container {
   padding: 0 2rem;
+  /* 以降追加 */
+  background-color: #cc993c;
 }
 
 .main {
